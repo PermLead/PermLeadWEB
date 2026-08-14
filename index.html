@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PermLead is the unified, developer-first REST API for normalized U.S. building permit data. Request early access to the private beta."
+    />
+    <meta name="theme-color" content="#090d0c" />
+    <meta property="og:title" content="PermLead — The API for U.S. Building Permit Data" />
+    <meta
+      property="og:description"
+      content="Clean, normalized permit data from jurisdictions across the United States through one developer-first API."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://permlead.com" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <title>PermLead — The API for U.S. Building Permit Data</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#090d0c",
+              panel: "#0e1513",
+              line: "#20302b",
+              mint: "#63f5b5",
+            },
+            fontFamily: {
+              sans: [
+                "Inter",
+                "ui-sans-serif",
+                "system-ui",
+                "-apple-system",
+                "BlinkMacSystemFont",
+                "Segoe UI",
+                "sans-serif",
+              ],
+              mono: [
+                "SFMono-Regular",
+                "Cascadia Code",
+                "Roboto Mono",
+                "Menlo",
+                "monospace",
+              ],
+            },
+            boxShadow: {
+              glow: "0 0 80px rgba(99, 245, 181, 0.10)",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="min-h-screen bg-ink font-sans text-white antialiased selection:bg-mint selection:text-ink">
+    <a
+      href="#main-content"
+      class="sr-only z-[100] rounded-lg bg-mint px-4 py-2 font-semibold text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+    >
+      Skip to content
+    </a>
+
+    <div class="relative isolate overflow-hidden">
+      <div
+        class="pointer-events-none absolute inset-x-0 top-0 -z-20 h-[760px] bg-[radial-gradient(circle_at_50%_-10%,rgba(54,211,153,0.18),transparent_45%)]"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[720px] opacity-[0.16] [background-image:linear-gradient(rgba(148,163,184,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.16)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent)]"
+        aria-hidden="true"
+      ></div>
+
+      <header class="border-b border-white/[0.07] bg-ink/75 backdrop-blur-xl">
+        <nav
+          class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8 lg:px-10"
+          aria-label="Primary navigation"
+        >
+          <a href="#" class="group flex items-center gap-2.5" aria-label="PermLead home">
+            <span
+              class="flex h-8 w-8 items-center justify-center rounded-lg border border-mint/30 bg-mint/10 text-mint transition group-hover:bg-mint/15"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19V8.5L12 4l8 4.5V19" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M8 19v-6h8v6M3 19h18" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <span class="text-lg font-semibold tracking-tight">PermLead</span>
+          </a>
+
+          <div class="hidden items-center gap-2 md:flex">
+            <span class="relative flex h-2 w-2" aria-hidden="true">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-mint opacity-60"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-mint"></span>
+            </span>
+            <span class="text-sm text-slate-400">Phase 1 · Private Beta Opening Soon</span>
+          </div>
+
+          <a
+            href="#waitlist"
+            class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.06] px-3.5 py-2 text-sm font-medium text-white transition hover:border-white/20 hover:bg-white/[0.1] focus:outline-none focus:ring-2 focus:ring-mint/60 focus:ring-offset-2 focus:ring-offset-ink sm:px-4"
+          >
+            Join waitlist
+            <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M4 10h12m-4-4 4 4-4 4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </nav>
+
+        <div class="border-t border-white/[0.06] px-5 py-2.5 text-center md:hidden">
+          <span class="inline-flex items-center gap-2 text-xs text-slate-400">
+            <span class="relative flex h-1.5 w-1.5" aria-hidden="true">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-mint opacity-60"></span>
+              <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-mint"></span>
+            </span>
+            Phase 1 · Private Beta Opening Soon
+          </span>
+        </div>
+      </header>
+
+      <main id="main-content">
+        <section class="mx-auto grid max-w-7xl items-center gap-14 px-5 pb-24 pt-20 sm:px-8 sm:pt-28 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16 lg:px-10 lg:pb-32 lg:pt-32">
+          <div>
+            <div class="mb-7 inline-flex items-center gap-2 rounded-full border border-mint/20 bg-mint/[0.07] px-3 py-1.5 text-xs font-medium text-mint sm:text-sm">
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M6.5 4.5 2 10l4.5 5.5M13.5 4.5 18 10l-4.5 5.5M11.5 3l-3 14" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              One integration. Every jurisdiction.
+            </div>
+
+            <h1 class="max-w-3xl text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl">
+              The single API for
+              <span class="bg-gradient-to-r from-mint via-emerald-300 to-cyan-300 bg-clip-text text-transparent">U.S. building permits.</span>
+            </h1>
+
+            <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-400 sm:text-xl">
+              Stop wrestling with city portals, brittle scrapers, and incompatible schemas. PermLead turns raw jurisdiction data into clean, categorized JSON through one reliable endpoint.
+            </p>
+
+            <div id="waitlist" class="mt-9 scroll-mt-28">
+              <form
+                id="waitlist-form"
+                action="https://formspree.io/f/mljrlavl"
+                method="post"
+                class="flex max-w-xl flex-col gap-3 sm:flex-row"
+                novalidate
+              >
+                <input type="hidden" name="_subject" value="New PermLead early access request" />
+                <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                <label for="email" class="sr-only">Work email address</label>
+                <div class="relative min-w-0 flex-1">
+                  <svg
+                    viewBox="0 0 20 20"
+                    class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    aria-hidden="true"
+                  >
+                    <rect x="2.5" y="4" width="15" height="12" rx="2" />
+                    <path d="m4 6 6 5 6-5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    inputmode="email"
+                    placeholder="developer@company.com"
+                    required
+                    aria-describedby="form-status waitlist-note"
+                    class="h-12 w-full rounded-xl border border-white/10 bg-white/[0.055] py-3 pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-slate-600 hover:border-white/20 focus:border-mint/60 focus:bg-white/[0.075] focus:ring-4 focus:ring-mint/10"
+                  />
+                </div>
+                <button
+                  id="submit-button"
+                  type="submit"
+                  class="group inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-mint px-5 text-sm font-semibold text-ink shadow-[0_0_30px_rgba(99,245,181,0.12)] transition hover:bg-emerald-200 focus:outline-none focus:ring-2 focus:ring-mint focus:ring-offset-2 focus:ring-offset-ink disabled:cursor-wait disabled:opacity-70"
+                >
+                  <span data-button-label>Request early access</span>
+                  <svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M4 10h12m-4-4 4 4-4 4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </form>
+              <p id="form-status" class="mt-3 hidden text-sm" role="status" aria-live="polite"></p>
+              <p id="waitlist-note" class="mt-3 flex items-center gap-2 text-xs text-slate-500 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="h-4 w-4 text-mint" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="m5 10 3 3 7-7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Free tier available at launch <span aria-hidden="true">•</span> No credit card required
+              </p>
+            </div>
+
+            <div class="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 text-xs font-medium uppercase tracking-[0.14em] text-slate-600" aria-label="Platform benefits">
+              <span>REST API</span>
+              <span>Normalized JSON</span>
+              <span>Webhooks</span>
+              <span>OpenAPI 3.1</span>
+            </div>
+          </div>
+
+          <div class="relative mx-auto w-full max-w-2xl lg:max-w-none">
+            <div class="absolute -inset-5 -z-10 rounded-[2rem] bg-mint/[0.05] blur-2xl" aria-hidden="true"></div>
+            <div class="overflow-hidden rounded-2xl border border-white/10 bg-[#080c0b] shadow-2xl shadow-black/40 ring-1 ring-white/[0.04]">
+              <div class="flex items-center justify-between border-b border-white/[0.08] px-4 py-3">
+                <div class="flex gap-1.5" aria-hidden="true">
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#ff5f57]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#febc2e]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#28c840]"></span>
+                </div>
+                <div class="rounded-md border border-white/[0.08] bg-white/[0.04] px-2.5 py-1 font-mono text-[10px] text-slate-500 sm:text-xs">
+                  GET /v1/permits/search
+                </div>
+                <div class="flex items-center gap-1.5 text-[10px] font-medium text-mint sm:text-xs">
+                  <span class="h-1.5 w-1.5 rounded-full bg-mint"></span>
+                  200 OK
+                </div>
+              </div>
+
+              <div class="border-b border-white/[0.07] px-4 py-3 font-mono text-[11px] text-slate-500 sm:px-5 sm:text-xs">
+                <span class="text-violet-300">curl</span>
+                <span class="text-slate-400">https://api.permlead.com/v1/permits/search</span><span class="text-slate-600">?city=Austin&amp;state=TX</span>
+              </div>
+
+              <pre class="overflow-x-auto p-5 text-[11px] leading-6 sm:p-6 sm:text-[13px] sm:leading-7" aria-label="Example permit API JSON response"><code class="font-mono"><span class="text-slate-500">{</span>
+  <span class="text-cyan-300">"object"</span><span class="text-slate-500">:</span> <span class="text-amber-200">"permit.search"</span><span class="text-slate-500">,</span>
+  <span class="text-cyan-300">"count"</span><span class="text-slate-500">:</span> <span class="text-violet-300">1</span><span class="text-slate-500">,</span>
+  <span class="text-cyan-300">"data"</span><span class="text-slate-500">:</span> <span class="text-slate-500">[</span>
+    <span class="text-slate-500">{</span>
+      <span class="text-cyan-300">"permit_id"</span><span class="text-slate-500">:</span> <span class="text-amber-200">"AUS-2026-018472"</span><span class="text-slate-500">,</span>
+      <span class="text-cyan-300">"jurisdiction"</span><span class="text-slate-500">:</span> <span class="text-amber-200">"Austin, TX"</span><span class="text-slate-500">,</span>
+      <span class="text-cyan-300">"address"</span><span class="text-slate-500">:</span> <span class="text-amber-200">"401 Congress Ave, Austin, TX 78701"</span><span class="text-slate-500">,</span>
+      <span class="text-cyan-300">"status"</span><span class="text-slate-500">:</span> <span class="text-emerald-300">"issued"</span><span class="text-slate-500">,</span>
+      <span class="text-cyan-300">"valuation"</span><span class="text-slate-500">:</span> <span class="text-violet-300">285000</span><span class="text-slate-500">,</span>
+      <span class="text-cyan-300">"issue_date"</span><span class="text-slate-500">:</span> <span class="text-amber-200">"2026-08-12"</span><span class="text-slate-500">,</span>
+      <span class="text-cyan-300">"contractor"</span><span class="text-slate-500">:</span> <span class="text-slate-500">{</span>
+        <span class="text-cyan-300">"name"</span><span class="text-slate-500">:</span> <span class="text-amber-200">"Lone Star Electric LLC"</span><span class="text-slate-500">,</span>
+        <span class="text-cyan-300">"license"</span><span class="text-slate-500">:</span> <span class="text-amber-200">"TECL-34819"</span>
+      <span class="text-slate-500">},</span>
+      <span class="text-cyan-300">"normalized_type"</span><span class="text-slate-500">:</span> <span class="text-amber-200">"Commercial - Electrical"</span>
+    <span class="text-slate-500">}</span>
+  <span class="text-slate-500">]</span>
+<span class="text-slate-500">}</span></code></pre>
+
+              <div class="flex items-center justify-between border-t border-white/[0.07] px-5 py-3 font-mono text-[10px] text-slate-600 sm:text-xs">
+                <span>req_01J5BY37TF6A</span>
+                <span>42ms · 1.8 KB</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="border-y border-white/[0.07] bg-white/[0.018]" aria-labelledby="pipeline-heading">
+          <div class="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-10">
+            <h2 id="pipeline-heading" class="sr-only">The PermLead data pipeline</h2>
+            <div class="grid items-center gap-6 text-sm sm:grid-cols-[1fr_auto_1fr_auto_1fr]">
+              <div class="flex items-center gap-3">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] font-mono text-xs text-slate-400">01</span>
+                <div>
+                  <p class="font-medium text-white">Ingest</p>
+                  <p class="mt-0.5 text-xs text-slate-500">Portals, files &amp; feeds</p>
+                </div>
+              </div>
+              <svg viewBox="0 0 24 24" class="hidden h-5 w-5 text-slate-700 sm:block" fill="none" stroke="currentColor" aria-hidden="true">
+                <path d="M5 12h14m-4-4 4 4-4 4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <div class="flex items-center gap-3">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-mint/20 bg-mint/[0.06] font-mono text-xs text-mint">02</span>
+                <div>
+                  <p class="font-medium text-white">Normalize</p>
+                  <p class="mt-0.5 text-xs text-slate-500">Clean, enrich &amp; classify</p>
+                </div>
+              </div>
+              <svg viewBox="0 0 24 24" class="hidden h-5 w-5 text-slate-700 sm:block" fill="none" stroke="currentColor" aria-hidden="true">
+                <path d="M5 12h14m-4-4 4 4-4 4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <div class="flex items-center gap-3">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] font-mono text-xs text-slate-400">03</span>
+                <div>
+                  <p class="font-medium text-white">Deliver</p>
+                  <p class="mt-0.5 text-xs text-slate-500">API queries &amp; webhooks</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 lg:px-10" aria-labelledby="features-heading">
+          <div class="max-w-2xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-mint">Built for production</p>
+            <h2 id="features-heading" class="mt-4 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-5xl">
+              Permit infrastructure,<br class="hidden sm:block" /> without the data archaeology.
+            </h2>
+            <p class="mt-5 text-lg leading-8 text-slate-400">
+              We handle the fragmented sources, changing formats, and messy edge cases so your team can build on dependable data.
+            </p>
+          </div>
+
+          <div class="mt-14 grid gap-4 md:grid-cols-2">
+            <article class="group rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.055] to-white/[0.02] p-6 transition hover:border-mint/20 hover:bg-white/[0.065] sm:p-8">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl border border-mint/20 bg-mint/[0.07] text-mint">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                  <circle cx="12" cy="12" r="8.5" />
+                  <path d="M3.5 12h17M12 3.5c2 2.3 3.1 5.1 3.1 8.5S14 18.2 12 20.5C10 18.2 8.9 15.4 8.9 12S10 5.8 12 3.5Z" />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-xl font-semibold tracking-tight">Multi-jurisdiction aggregation</h3>
+              <p class="mt-3 leading-7 text-slate-400">
+                Query permits across cities and counties through one interface—without maintaining a patchwork of custom collectors.
+              </p>
+              <div class="mt-6 flex flex-wrap gap-2 font-mono text-[11px] text-slate-500">
+                <span class="rounded-md border border-white/[0.08] px-2 py-1">cities</span>
+                <span class="rounded-md border border-white/[0.08] px-2 py-1">counties</span>
+                <span class="rounded-md border border-white/[0.08] px-2 py-1">states</span>
+              </div>
+            </article>
+
+            <article class="group rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.055] to-white/[0.02] p-6 transition hover:border-mint/20 hover:bg-white/[0.065] sm:p-8">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-300/20 bg-cyan-300/[0.07] text-cyan-300">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                  <path d="m4 7 8-4 8 4-8 4-8-4Z" stroke-linejoin="round" />
+                  <path d="m4 12 8 4 8-4M4 17l8 4 8-4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-xl font-semibold tracking-tight">Schema normalization &amp; ML categorization</h3>
+              <p class="mt-3 leading-7 text-slate-400">
+                Inconsistent source records become stable fields, deduplicated entities, and useful project categories your product can trust.
+              </p>
+              <div class="mt-6 flex flex-wrap gap-2 font-mono text-[11px] text-slate-500">
+                <span class="rounded-md border border-white/[0.08] px-2 py-1">normalized_type</span>
+                <span class="rounded-md border border-white/[0.08] px-2 py-1">confidence</span>
+              </div>
+            </article>
+
+            <article class="group rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.055] to-white/[0.02] p-6 transition hover:border-mint/20 hover:bg-white/[0.065] sm:p-8">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl border border-violet-300/20 bg-violet-300/[0.07] text-violet-300">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                  <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M10 21h4" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-xl font-semibold tracking-tight">Webhooks &amp; real-time alerts</h3>
+              <p class="mt-3 leading-7 text-slate-400">
+                Trigger workflows when matching permits are filed, updated, or issued. Filter alerts by geography, type, status, and value.
+              </p>
+              <div class="mt-6 flex flex-wrap gap-2 font-mono text-[11px] text-slate-500">
+                <span class="rounded-md border border-white/[0.08] px-2 py-1">permit.created</span>
+                <span class="rounded-md border border-white/[0.08] px-2 py-1">permit.updated</span>
+              </div>
+            </article>
+
+            <article class="group rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.055] to-white/[0.02] p-6 transition hover:border-mint/20 hover:bg-white/[0.065] sm:p-8">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl border border-amber-200/20 bg-amber-200/[0.07] text-amber-200">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                  <path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-xl font-semibold tracking-tight">Developer-first REST &amp; webhooks</h3>
+              <p class="mt-3 leading-7 text-slate-400">
+                Predictable JSON, cursor pagination, clear errors, idempotent events, and complete OpenAPI specs from day one.
+              </p>
+              <div class="mt-6 flex flex-wrap gap-2 font-mono text-[11px] text-slate-500">
+                <span class="rounded-md border border-white/[0.08] px-2 py-1">JSON</span>
+                <span class="rounded-md border border-white/[0.08] px-2 py-1">OpenAPI 3.1</span>
+                <span class="rounded-md border border-white/[0.08] px-2 py-1">SDKs</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="border-y border-white/[0.07] bg-[#0b100f]" aria-labelledby="audience-heading">
+          <div class="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-28 lg:px-10">
+            <div class="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+              <div>
+                <p class="text-sm font-semibold uppercase tracking-[0.18em] text-mint">Built for your workflow</p>
+                <h2 id="audience-heading" class="mt-4 text-3xl font-semibold tracking-[-0.035em] sm:text-5xl">
+                  Turn permit activity into action.
+                </h2>
+              </div>
+              <p class="max-w-xl text-base leading-7 text-slate-400 lg:text-right">
+                From product intelligence to the next qualified lead, PermLead gives your team a clean signal from public construction activity.
+              </p>
+            </div>
+
+            <div class="mt-14 grid gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.08] lg:grid-cols-3">
+              <article class="bg-panel p-7 sm:p-8">
+                <span class="font-mono text-xs text-mint">01 / PROPTECH</span>
+                <h3 class="mt-10 text-xl font-semibold">PropTech &amp; real estate platforms</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                  Enrich properties, surface development activity, and add permit intelligence to underwriting or research products.
+                </p>
+              </article>
+              <article class="bg-panel p-7 sm:p-8">
+                <span class="font-mono text-xs text-cyan-300">02 / CONTRACTORS</span>
+                <h3 class="mt-10 text-xl font-semibold">Commercial &amp; residential contractors</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                  Identify active projects earlier, monitor your markets, and spend less time searching municipal websites.
+                </p>
+              </article>
+              <article class="bg-panel p-7 sm:p-8">
+                <span class="font-mono text-xs text-violet-300">03 / GROWTH</span>
+                <h3 class="mt-10 text-xl font-semibold">Sales &amp; lead generation teams</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                  Build timely, high-intent prospect lists based on project type, valuation, location, and permit status.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="relative overflow-hidden px-5 py-24 sm:px-8 sm:py-32 lg:px-10" aria-labelledby="cta-heading">
+          <div class="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-mint/10 blur-[120px]" aria-hidden="true"></div>
+          <div class="mx-auto max-w-3xl text-center">
+            <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl border border-mint/20 bg-mint/[0.08] text-mint">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h2 id="cta-heading" class="mt-7 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
+              Start building with better permit data.
+            </h2>
+            <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-400">
+              Join the private beta waitlist for early API access, launch pricing, and coverage updates.
+            </p>
+            <a
+              href="#waitlist"
+              class="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-mint px-5 text-sm font-semibold text-ink transition hover:bg-emerald-200 focus:outline-none focus:ring-2 focus:ring-mint focus:ring-offset-2 focus:ring-offset-ink"
+            >
+              Request early access
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M4 10h12m-4-4 4 4-4 4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="border-t border-white/[0.07]">
+        <div class="mx-auto flex max-w-7xl flex-col gap-7 px-5 py-8 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
+          <div class="flex items-center gap-3">
+            <span class="flex h-7 w-7 items-center justify-center rounded-md border border-mint/25 bg-mint/[0.08] text-mint" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19V8.5L12 4l8 4.5V19M8 19v-6h8v6M3 19h18" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <p class="text-sm text-slate-500">© 2026 PermLead Inc.</p>
+          </div>
+
+          <nav class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-500" aria-label="Footer navigation">
+            <a href="mailto:support@permlead.com" class="transition hover:text-white focus:outline-none focus:text-white">support@permlead.com</a>
+            <a href="/terms" class="transition hover:text-white focus:outline-none focus:text-white">Terms</a>
+            <a href="/privacy" class="transition hover:text-white focus:outline-none focus:text-white">Privacy</a>
+            <a href="/docs" class="inline-flex items-center gap-1.5 transition hover:text-white focus:outline-none focus:text-white">
+              API Docs
+              <span class="rounded border border-white/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-slate-600">Soon</span>
+            </a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const waitlistForm = document.getElementById("waitlist-form");
+      const emailInput = document.getElementById("email");
+      const submitButton = document.getElementById("submit-button");
+      const buttonLabel = submitButton.querySelector("[data-button-label]");
+      const formStatus = document.getElementById("form-status");
+
+      function showFormStatus(message, type) {
+        formStatus.textContent = message;
+        formStatus.classList.remove("hidden", "text-rose-300", "text-mint");
+        formStatus.classList.add(type === "error" ? "text-rose-300" : "text-mint");
+      }
+
+      waitlistForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        formStatus.classList.add("hidden");
+
+        if (!emailInput.validity.valid) {
+          emailInput.setAttribute("aria-invalid", "true");
+          emailInput.focus();
+          showFormStatus("Enter a valid work email to request access.", "error");
+          return;
+        }
+
+        emailInput.removeAttribute("aria-invalid");
+        emailInput.value = emailInput.value.trim();
+        submitButton.disabled = true;
+        waitlistForm.setAttribute("aria-busy", "true");
+        buttonLabel.textContent = "Requesting…";
+
+        try {
+          const response = await fetch(waitlistForm.action, {
+            method: "POST",
+            headers: {
+              "Accept": "application/json",
+            },
+            body: new FormData(waitlistForm),
+          });
+
+          if (!response.ok) throw new Error("Request failed");
+
+          waitlistForm.reset();
+          showFormStatus("You're on the list. We'll be in touch with beta details soon.", "success");
+        } catch (error) {
+          showFormStatus(
+            "We couldn't submit your request. Please email support@permlead.com and we'll add you manually.",
+            "error",
+          );
+        } finally {
+          submitButton.disabled = false;
+          waitlistForm.removeAttribute("aria-busy");
+          buttonLabel.textContent = "Request early access";
+        }
+      });
+    </script>
+  </body>
+</html>
